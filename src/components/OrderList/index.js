@@ -5,7 +5,7 @@ import { useHistory } from "react-router";
 const OrderList = (props) => {
   const [beersList, setBeersList] = useState([]);
   const [value, setValue] = useState(
-    props.location.state.value
+    props.location?.state?.value
       ? props.location.state.value
       : {
           steampunk: 0,
