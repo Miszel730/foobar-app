@@ -2,20 +2,24 @@ import React, { useContext, useEffect, useState } from "react";
 import { fetchData } from "../../ApiService";
 import { useHistory } from "react-router";
 
-const OrderList = () => {
+const OrderList = (props) => {
   const [beersList, setBeersList] = useState([]);
-  const [value, setValue] = useState({
-    steampunk: 0,
-    sleighride: 0,
-    hollabacklager: 0,
-    hoppilyeverafter: 0,
-    elhefe: 0,
-    fairytaleale: 0,
-    githop: 0,
-    mowintime: 0,
-    row26: 0,
-    ruinedchildhood: 0,
-  });
+  const [value, setValue] = useState(
+    props.location.state.value
+      ? props.location.state.value
+      : {
+          steampunk: 0,
+          sleighride: 0,
+          hollabacklager: 0,
+          hoppilyeverafter: 0,
+          elhefe: 0,
+          fairytaleale: 0,
+          githop: 0,
+          mowintime: 0,
+          row26: 0,
+          ruinedchildhood: 0,
+        }
+  );
 
   const history = useHistory();
 
