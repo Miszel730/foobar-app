@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { fetchData } from "../../ApiService";
 
 const Payment = (props) => {
   const {
@@ -13,18 +14,36 @@ const Payment = (props) => {
     watch,
     formState: { errors },
   } = useForm();
-  console.log(errors);
+
   const watchDate = watch("expMonth");
-  const todayDate = new Date();
-  console.log(new Date(watchDate).getTime());
-  console.log(todayDate.getTime());
-  console.log(
-    new Date(watchDate).getTime() > todayDate.getTime() ? true : false
-  );
+
+  const sendOrder = () => {
+    console.log(Object.keys(value));
+    const beersArr = [];
+    Object.keys(value).map(
+      (beer) =>
+        value[beer] > 0 &&
+        beersArr.push({
+          name:
+            beer !== "GitHop"
+              ? beer
+                  .replace(/([^0-9])([0-9])/g, "$1 $2")
+                  .replace(/([a-z])([A-Z])/g, "$1 $2")
+              : beer,
+          amount: value[beer],
+        })
+    );
+    return beersArr;
+  };
+  sendOrder();
   return (
     <div>
       <div>
-        <form onSubmit={handleSubmit((values) => console.log(values))}>
+        <form
+          onSubmit={handleSubmit((values) =>
+            fetchData("order", "POST", sendOrder())
+          )}
+        >
           <label htmlFor="userName">Customer name:</label> <br />
           <input
             className="userName"
@@ -49,7 +68,7 @@ const Payment = (props) => {
             {...register("expMonth", {
               required: true,
               validate: () =>
-                new Date(watchDate).getTime() > todayDate.getTime(),
+                new Date(watchDate).getTime() > new Date().getTime(),
             })}
           />
           <br />

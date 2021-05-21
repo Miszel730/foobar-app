@@ -8,16 +8,16 @@ const OrderList = (props) => {
     props.location?.state?.value
       ? props.location.state.value
       : {
-          steampunk: 0,
-          sleighride: 0,
-          hollabacklager: 0,
-          hoppilyeverafter: 0,
-          elhefe: 0,
-          fairytaleale: 0,
-          githop: 0,
-          mowintime: 0,
-          row26: 0,
-          ruinedchildhood: 0,
+          Steampunk: 0,
+          Sleighride: 0,
+          HollabackLager: 0,
+          HoppilyEverAfter: 0,
+          ElHefe: 0,
+          FairyTaleAle: 0,
+          GitHop: 0,
+          Mowintime: 0,
+          Row26: 0,
+          RuinedChildhood: 0,
         }
   );
 
@@ -39,7 +39,7 @@ const OrderList = (props) => {
       <h2>Take a look at what we have on tap today! </h2>
       <ul>
         {beersList.map((beer, index) => {
-          const beerName = beer.replaceAll(" ", "").toLowerCase();
+          const beerName = beer.replaceAll(" ", "");
           return (
             <li key={index}>
               <img width="309px" height="235px" src={`/img/${beerName}.png`} />
