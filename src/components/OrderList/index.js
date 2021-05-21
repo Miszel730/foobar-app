@@ -4,11 +4,13 @@ import { useHistory } from "react-router";
 
 const OrderList = (props) => {
   const [beersList, setBeersList] = useState([]);
+  const [availableBeers, setAvailableBeers] = useState([]);
+
   const [value, setValue] = useState(
     props.location?.state?.value
       ? props.location.state.value
       : {
-          Steampunk: 0,
+          Steampunk: { quantity: 0, about: {} },
           Sleighride: 0,
           HollabackLager: 0,
           HoppilyEverAfter: 0,
@@ -31,7 +33,14 @@ const OrderList = (props) => {
       (object) =>
         newList.includes(object.beer) === false && newList.push(object.beer)
     );
-    setBeersList(newList);
+
+    setAvailableBeers(newList);
+  }, []);
+
+  useEffect(async () => {
+    const beerTypes = await fetchData("beertypes");
+    console.log(beerTypes);
+    beerTypes && setBeersList(beerTypes);
   }, []);
 
   return (
@@ -39,42 +48,49 @@ const OrderList = (props) => {
       <h2>Take a look at what we have on tap today! </h2>
       <ul>
         {beersList.map((beer, index) => {
-          const beerName = beer.replaceAll(" ", "");
+          const beerName = beer.name.replaceAll(" ", "");
           return (
-            <li key={index}>
-              <img width="309px" height="235px" src={`/img/${beerName}.png`} />
-              <div>
-                <p>{beer}</p>
-                <p>79DKK</p>
+            availableBeers.includes(beer.name) && (
+              <li key={index}>
+                <img
+                  width="309px"
+                  height="235px"
+                  src={`/img/${beerName}.png`}
+                />
                 <div>
-                  <button
-                    onClick={() =>
-                      setValue((prevValue) =>
-                        prevValue[beerName] > 0
-                          ? {
-                              ...prevValue,
-                              [beerName]: prevValue[beerName] - 1,
-                            }
-                          : { ...prevValue }
-                      )
-                    }
-                  >
-                    -
-                  </button>
-                  <input className="" value={value[beerName]} type="number" />
-                  <button
-                    onClick={() =>
-                      setValue((prevValue) => ({
-                        ...prevValue,
-                        [beerName]: prevValue[beerName] + 1,
-                      }))
-                    }
-                  >
-                    +
-                  </button>
+                  <p>{beer.name}</p>
+                  <p>{beer.description.overallImpression}</p>
+                  <p>79DKK</p>
+                  <div>
+                    <button
+                      onClick={() =>
+                        setValue((prevValue) =>
+                          prevValue[beerName] > 0
+                            ? {
+                                ...prevValue,
+                                [beerName]: prevValue[beerName] - 1,
+                              }
+                            : { ...prevValue }
+                        )
+                      }
+                    >
+                      -
+                    </button>
+                    <input className="" value={value[beerName]} type="number" />
+                    <button
+                      onClick={() =>
+                        setValue((prevValue) => ({
+                          ...prevValue,
+                          [beerName]: prevValue[beerName] + 1,
+                        }))
+                      }
+                    >
+                      +
+                    </button>
+                  </div>
                 </div>
-              </div>
-            </li>
+              </li>
+            )
           );
         })}
       </ul>
