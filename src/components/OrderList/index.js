@@ -10,7 +10,7 @@ const OrderList = (props) => {
     props.location?.state?.value
       ? props.location.state.value
       : {
-          Steampunk: { quantity: 0, about: {} },
+          Steampunk: 0,
           Sleighride: 0,
           HollabackLager: 0,
           HoppilyEverAfter: 0,
@@ -39,9 +39,16 @@ const OrderList = (props) => {
 
   useEffect(async () => {
     const beerTypes = await fetchData("beertypes");
-    console.log(beerTypes);
-    beerTypes && setBeersList(beerTypes);
+    const beersWithPrice = beerTypes.map((beerObject) => ({
+      ...beerObject,
+      beerPrice: Math.floor(Math.random() * 6),
+      quantity: 0,
+    }));
+    beersWithPrice && setBeersList(beersWithPrice);
   }, []);
+  useEffect(() => {
+    console.log(beersList);
+  }, [beersList]);
 
   return (
     <div>
@@ -59,19 +66,31 @@ const OrderList = (props) => {
                 />
                 <div>
                   <p>{beer.name}</p>
+                  <p>
+                    {beer.category}, {beer.alc}%
+                  </p>
                   <p>{beer.description.overallImpression}</p>
-                  <p>79DKK</p>
+                  <p>$ {beer.beerPrice}</p>
                   <div>
                     <button
-                      onClick={() =>
-                        setValue((prevValue) =>
-                          prevValue[beerName] > 0
-                            ? {
-                                ...prevValue,
-                                [beerName]: prevValue[beerName] - 1,
-                              }
-                            : { ...prevValue }
-                        )
+                      onClick={
+                        () =>
+                          setBeersList((beerObject) =>
+                            beerObject.name === beer.name
+                              ? {
+                                  ...beerObject,
+                                  quantity: beerObject.quantity - 1,
+                                }
+                              : beerObject
+                          )
+                        // setValue((prevValue) =>
+                        //   prevValue[beerName] > 0
+                        //     ? {
+                        //         ...prevValue,
+                        //         [beerName]: prevValue[beerName] - 1,
+                        //       }
+                        //     : { ...prevValue }
+                        // )
                       }
                     >
                       -
@@ -95,7 +114,9 @@ const OrderList = (props) => {
         })}
       </ul>
       <button
-        onClick={() => history.push({ pathname: "/basket", state: { value } })}
+        onClick={() =>
+          history.push({ pathname: "/basket", state: { value, beersList } })
+        }
       >
         Checkout
       </button>
