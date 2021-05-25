@@ -2,49 +2,52 @@ import React, { useState } from "react";
 import { useHistory } from "react-router";
 
 const Basket = (props) => {
-  const [value, setValue] = useState(props.location.state.value);
-  const [passBeers, setPassBeers] = useState(
-    props.history.location.state.beersList
+  const [beersList, setBeersList] = useState(
+    props.location?.state?.beersList || []
   );
+  const incommingValues = props.location.state.beersList;
 
-  const incommingValues = props.location.state.value;
   const history = useHistory();
-  console.log(Object.values(value));
-  console.log(value);
+
+  console.log();
+
   return (
     <div>
-      {passBeers.map(
-        (key) =>
-          (value[key.name.replaceAll(" ", "")] > 0 ||
-            incommingValues[key.name.replaceAll(" ", "")] > 0) && (
+      {beersList.map(
+        (beer) =>
+          (beer.quantity > 0 ||
+            incommingValues.find((object) => object.name === beer.name)
+              .quantity > 0) && (
             <>
               <div>
-                {key.name}
+                {beer.name}
                 <p>
-                  {key.category}, {key.alc}%
+                  {beer.category}, {beer.alc}%
                 </p>
-                <p>{key.description.overallImpression}</p>
+                <p>{beer.description.overallImpression}</p>
                 <button
                   onClick={() =>
-                    setValue((prevValue) =>
-                      prevValue[key] > 0
-                        ? {
-                            ...prevValue,
-                            [key]: prevValue[key] - 1,
-                          }
-                        : { ...prevValue }
+                    setBeersList((array) =>
+                      array.map((object) =>
+                        object.name === beer.name && object.quantity > 0
+                          ? { ...object, quantity: object.quantity - 1 }
+                          : object
+                      )
                     )
                   }
                 >
                   -
                 </button>
-                {value[key.name.replaceAll(" ", "")]}
+                {beer.quantity}
                 <button
                   onClick={() =>
-                    setValue((prevValue) => ({
-                      ...prevValue,
-                      [key]: prevValue[key] + 1,
-                    }))
+                    setBeersList((array) =>
+                      array.map((object) =>
+                        object.name === beer.name
+                          ? { ...object, quantity: object.quantity + 1 }
+                          : object
+                      )
+                    )
                   }
                 >
                   +
@@ -53,15 +56,24 @@ const Basket = (props) => {
             </>
           )
       )}
-      <h3>Total price:</h3>
+      <h3>
+        Total price:{" $ "}
+        {beersList
+          .map((beer) => beer.quantity * beer.beerPrice)
+          .reduce((a, b) => a + b, 0)}
+      </h3>
       <p>{}</p>
       <button
-        onClick={() => history.push({ pathname: "/order", state: { value } })}
+        onClick={() =>
+          history.push({ pathname: "/order", state: { beersList } })
+        }
       >
         ←Continue shopping
       </button>
       <button
-        onClick={() => history.push({ pathname: "/payment", state: { value } })}
+        onClick={() =>
+          history.push({ pathname: "/payment", state: { beersList } })
+        }
       >
         Launch order! →
       </button>

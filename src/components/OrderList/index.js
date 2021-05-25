@@ -1,27 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { fetchData } from "../../ApiService";
 import { useHistory } from "react-router";
 
 const OrderList = (props) => {
-  const [beersList, setBeersList] = useState([]);
-  const [availableBeers, setAvailableBeers] = useState([]);
-
-  const [value, setValue] = useState(
-    props.location?.state?.value
-      ? props.location.state.value
-      : {
-          Steampunk: 0,
-          Sleighride: 0,
-          HollabackLager: 0,
-          HoppilyEverAfter: 0,
-          ElHefe: 0,
-          FairyTaleAle: 0,
-          GitHop: 0,
-          Mowintime: 0,
-          Row26: 0,
-          RuinedChildhood: 0,
-        }
+  const [beersList, setBeersList] = useState(
+    props.location?.state?.beersList || []
   );
+  const [availableBeers, setAvailableBeers] = useState([]);
 
   const history = useHistory();
 
@@ -38,17 +23,16 @@ const OrderList = (props) => {
   }, []);
 
   useEffect(async () => {
-    const beerTypes = await fetchData("beertypes");
-    const beersWithPrice = beerTypes.map((beerObject) => ({
-      ...beerObject,
-      beerPrice: Math.floor(Math.random() * 6),
-      quantity: 0,
-    }));
-    beersWithPrice && setBeersList(beersWithPrice);
+    if (!props.location?.state?.beersList) {
+      const beerTypes = await fetchData("beertypes");
+      const beersWithPrice = beerTypes.map((beerObject) => ({
+        ...beerObject,
+        beerPrice: Math.floor(Math.random() * 6),
+        quantity: 0,
+      }));
+      beersWithPrice && setBeersList(beersWithPrice);
+    }
   }, []);
-  useEffect(() => {
-    console.log(beersList);
-  }, [beersList]);
 
   return (
     <div>
@@ -73,35 +57,28 @@ const OrderList = (props) => {
                   <p>$ {beer.beerPrice}</p>
                   <div>
                     <button
-                      onClick={
-                        () =>
-                          setBeersList((beerObject) =>
-                            beerObject.name === beer.name
-                              ? {
-                                  ...beerObject,
-                                  quantity: beerObject.quantity - 1,
-                                }
-                              : beerObject
+                      onClick={() =>
+                        setBeersList((array) =>
+                          array.map((object) =>
+                            object.name === beer.name && object.quantity > 0
+                              ? { ...object, quantity: object.quantity - 1 }
+                              : object
                           )
-                        // setValue((prevValue) =>
-                        //   prevValue[beerName] > 0
-                        //     ? {
-                        //         ...prevValue,
-                        //         [beerName]: prevValue[beerName] - 1,
-                        //       }
-                        //     : { ...prevValue }
-                        // )
+                        )
                       }
                     >
                       -
                     </button>
-                    <input className="" value={value[beerName]} type="number" />
+                    <input className="" value={beer.quantity} type="number" />
                     <button
                       onClick={() =>
-                        setValue((prevValue) => ({
-                          ...prevValue,
-                          [beerName]: prevValue[beerName] + 1,
-                        }))
+                        setBeersList((array) =>
+                          array.map((object) =>
+                            object.name === beer.name
+                              ? { ...object, quantity: object.quantity + 1 }
+                              : object
+                          )
+                        )
                       }
                     >
                       +
@@ -115,7 +92,7 @@ const OrderList = (props) => {
       </ul>
       <button
         onClick={() =>
-          history.push({ pathname: "/basket", state: { value, beersList } })
+          history.push({ pathname: "/basket", state: { beersList } })
         }
       >
         Checkout

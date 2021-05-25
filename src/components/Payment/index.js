@@ -5,9 +5,10 @@ import { fetchData } from "../../ApiService";
 const Payment = (props) => {
   const {
     location: {
-      state: { value: value },
+      state: { beersList },
     },
   } = props;
+
   const {
     register,
     handleSubmit,
@@ -18,24 +19,18 @@ const Payment = (props) => {
   const watchDate = watch("expMonth");
 
   const sendOrder = () => {
-    console.log(Object.keys(value));
     const beersArr = [];
-    Object.keys(value).map(
+    beersList.map(
       (beer) =>
-        value[beer] > 0 &&
+        beer.quantity > 0 &&
         beersArr.push({
-          name:
-            beer !== "GitHop"
-              ? beer
-                  .replace(/([^0-9])([0-9])/g, "$1 $2")
-                  .replace(/([a-z])([A-Z])/g, "$1 $2")
-              : beer,
-          amount: value[beer],
+          name: beer.name,
+          amount: beer.quantity,
         })
     );
     return beersArr;
   };
-  sendOrder();
+
   return (
     <div>
       <div>
@@ -87,11 +82,11 @@ const Payment = (props) => {
       </div>
       <div>
         Order summary
-        {Object.keys(value).map(
+        {beersList.map(
           (key) =>
-            value[key] > 0 && (
+            key.quantity > 0 && (
               <div>
-                {key} {value[key]}
+                {key.name} {key.quantity}
               </div>
             )
         )}
