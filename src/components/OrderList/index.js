@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { fetchData } from "../../ApiService";
 import { useHistory } from "react-router";
+import "./orderList.scss";
 
 const OrderList = (props) => {
   const [beersList, setBeersList] = useState(
     props.location?.state?.beersList || []
   );
   const [availableBeers, setAvailableBeers] = useState([]);
-
+  const [expanded, setExpanded] = useState("");
   const history = useHistory();
 
   useEffect(async () => {
@@ -27,7 +28,7 @@ const OrderList = (props) => {
       const beerTypes = await fetchData("beertypes");
       const beersWithPrice = beerTypes.map((beerObject) => ({
         ...beerObject,
-        beerPrice: Math.floor(Math.random() * 6),
+        beerPrice: Math.floor(Math.random() * 5 + 1),
         quantity: 0,
       }));
       beersWithPrice && setBeersList(beersWithPrice);
@@ -37,23 +38,35 @@ const OrderList = (props) => {
   return (
     <div>
       <h2>Take a look at what we have on tap today! </h2>
-      <ul>
+      <ul className="beers-list">
         {beersList.map((beer, index) => {
           const beerName = beer.name.replaceAll(" ", "");
           return (
             availableBeers.includes(beer.name) && (
-              <li key={index}>
-                <img
-                  width="309px"
-                  height="235px"
-                  src={`/img/${beerName}.png`}
-                />
+              <li
+                className={`beers-list__item ${
+                  expanded === beer.name ? "beers-list__item--expanded" : ""
+                }`}
+                onClick={() => setExpanded(beer.name)}
+                key={index}
+              >
+                <div className="image-box">
+                  <img className="images" src={`/img/${beerName}.png`} />
+                </div>
                 <div>
                   <p>{beer.name}</p>
                   <p>
                     {beer.category}, {beer.alc}%
                   </p>
-                  <p>{beer.description.overallImpression}</p>
+                  <p
+                    className={`detailed-description ${
+                      expanded === beer.name
+                        ? "detailed-description--shown"
+                        : ""
+                    }`}
+                  >
+                    {beer.description.overallImpression}
+                  </p>
                   <p>$ {beer.beerPrice}</p>
                   <div>
                     <button

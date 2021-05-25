@@ -77,7 +77,7 @@ const Payment = (props) => {
             })}
           />
           <br />
-          <button>onSubmit</button>
+          <button>Launch the order</button>
         </form>
       </div>
       <div>
