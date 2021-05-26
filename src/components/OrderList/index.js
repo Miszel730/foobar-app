@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { fetchData } from "../../ApiService";
 import { useHistory } from "react-router";
-import "./orderList.scss";
 
 const OrderList = (props) => {
   const [beersList, setBeersList] = useState(

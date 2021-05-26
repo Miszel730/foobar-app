@@ -22,8 +22,9 @@
 }
 .detailed-description {
   display: none;
+  max-width: 400px;
   &--shown {
-    display: inline;
+    display: block;
   }
 }
 .image-box {

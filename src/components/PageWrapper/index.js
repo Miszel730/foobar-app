@@ -1,5 +1,4 @@
 import React from "react";
-import "./pageWrapper.scss";
 
 const PageWrapper = (props) => {
   return (

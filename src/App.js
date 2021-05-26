@@ -5,8 +5,7 @@ import Welcome from "./components/WelcomePage";
 import OrderList from "./components/OrderList";
 import Payment from "./components/Payment";
 import Basket from "./components/Basket";
-import "../src/styles/reset.scss";
-
+import "./styles/main.scss";
 const App = () => {
   return (
     <div className="App">
