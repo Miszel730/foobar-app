@@ -1,0 +1,12 @@
+@import "../abstracts/variables.scss";
+
+.pageWrapper {
+  background-color: $bg-color;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.footer {
+  margin-top: auto;
+  text-align: center;
+}

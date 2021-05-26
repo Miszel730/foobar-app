@@ -53,8 +53,8 @@ const OrderList = (props) => {
                   <img className="images" src={`/img/${beerName}.png`} />
                 </div>
                 <div>
-                  <p>{beer.name}</p>
-                  <p>
+                  <p className="beer-name">{beer.name}</p>
+                  <p className="beer-details">
                     {beer.category}, {beer.alc}%
                   </p>
                   <p
@@ -66,7 +66,7 @@ const OrderList = (props) => {
                   >
                     {beer.description.overallImpression}
                   </p>
-                  <p>$ {beer.beerPrice}</p>
+                  <p className="beer-price">$ {beer.beerPrice}</p>
                   <div>
                     <button
                       onClick={() =>
