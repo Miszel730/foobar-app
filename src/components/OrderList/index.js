@@ -74,7 +74,7 @@ const OrderList = (props) => {
                     {beer.description.overallImpression}
                   </p>
 
-                  <div className="add-beers-container">
+                  <div className="add-beers-container add-beers-container--auto-top">
                     <button
                       className="change-value-btn"
                       onClick={(event) => {

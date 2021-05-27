@@ -106,7 +106,11 @@
   }
 }
 .add-beers-container {
-  margin-top: auto;
+  display: flex;
+  align-items: baseline;
+  &--auto-top {
+    margin-top: auto;
+  }
 }
 .on-tap-today {
   font-family: $header-font;
