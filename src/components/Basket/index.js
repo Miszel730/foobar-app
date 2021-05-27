@@ -13,6 +13,7 @@ const Basket = (props) => {
 
   return (
     <>
+      <h2 className="on-tap-today">My order </h2>
       <div className="basket-page">
         {beersList.map(
           (beer) =>

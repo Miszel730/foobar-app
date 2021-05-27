@@ -36,9 +36,7 @@ const OrderList = (props) => {
 
   return (
     <div className="order-container">
-      <h2 className="on-tap-today">
-        Take a look at what we have on tap today!{" "}
-      </h2>
+      <h2 className="on-tap-today">On tap today! </h2>
       <ul className="beers-list">
         {beersList.map((beer, index) => {
           const beerName = beer.name.replaceAll(" ", "");

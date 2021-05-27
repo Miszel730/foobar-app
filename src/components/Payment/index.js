@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { fetchData } from "../../ApiService";
+import { useHistory } from "react-router";
 
 const Payment = (props) => {
   const {
@@ -8,7 +9,7 @@ const Payment = (props) => {
       state: { beersList },
     },
   } = props;
-
+  const history = useHistory();
   const {
     register,
     handleSubmit,
@@ -85,6 +86,14 @@ const Payment = (props) => {
             })}
           />
           <br />
+          <button
+            className="checkout"
+            onClick={() =>
+              history.push({ pathname: "/basket", state: { beersList } })
+            }
+          >
+            Back to basket
+          </button>
           <button>Launch the order</button>
         </form>
       </div>
