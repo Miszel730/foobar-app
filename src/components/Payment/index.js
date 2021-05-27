@@ -15,7 +15,7 @@ const Payment = (props) => {
     watch,
     formState: { errors },
   } = useForm();
-
+  console.log(errors);
   const watchDate = watch("expMonth");
 
   const sendOrder = () => {
@@ -40,10 +40,12 @@ const Payment = (props) => {
           )}
         >
           <label htmlFor="userName">Customer name:</label> <br />
+          {errors.userName?.message}
+          <br />
           <input
             className="userName"
             type="text"
-            {...register("userName", { required: true })}
+            {...register("userName", { required: "This field is required!" })}
           />
           <br />
           <label htmlFor="cardNumber">Card number:</label>
@@ -51,8 +53,11 @@ const Payment = (props) => {
           <input
             type="text"
             {...register("cardNumber", {
-              required: true,
-              pattern: /^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/i,
+              required: "This field is required!",
+              pattern: {
+                value: /^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/i,
+                message: "Not valid number / empty account",
+              },
             })}
           />
           <br />
@@ -61,7 +66,7 @@ const Payment = (props) => {
           <input
             type="month"
             {...register("expMonth", {
-              required: true,
+              required: "This field is required!",
               validate: () =>
                 new Date(watchDate).getTime() > new Date().getTime(),
             })}
@@ -72,8 +77,11 @@ const Payment = (props) => {
           <input
             type="number"
             {...register("cvc", {
-              required: true,
-              pattern: /^[0-9]{3,4}$/,
+              required: "This field is required!",
+              pattern: {
+                value: /^[0-9]{3,4}$/,
+                message: "This field is zjebane!",
+              },
             })}
           />
           <br />

@@ -7,6 +7,14 @@
   flex-direction: column;
 }
 .footer {
+  min-height: 50px;
   margin-top: auto;
   text-align: center;
+  background-color: $txt-color;
+}
+.footer p {
+  font-family: $text-font;
+  color: $bttn-color;
+  margin-top: 15px;
+  font-size: 12px;
 }

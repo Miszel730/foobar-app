@@ -6,7 +6,7 @@ const PageWrapper = (props) => {
       <h1>Logo</h1>
       {props.children}
       <footer className="footer">
-        All rights reserved - FooBar Space Industry 2074
+        <p>All rights reserved - FooBar Space Industry 2074</p>
       </footer>
     </div>
   );

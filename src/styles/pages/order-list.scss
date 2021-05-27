@@ -50,3 +50,32 @@
   font-family: $text-font;
   font-size: 12px;
 }
+
+.checkout {
+  border-radius: 9px;
+  padding: 17px 35px;
+  background-color: $bttn-color;
+  display: inline-block;
+  font: normal normal 26px/1 "Roboto", sans-serif;
+  text-align: center;
+}
+.checkout:hover {
+  border-radius: 9px;
+  padding: 17px 35px;
+  background-color: $orange-main;
+  display: inline-block;
+  font: normal normal 26px/1 "Roboto", sans-serif;
+  text-align: center;
+  cursor: pointer;
+}
+.minus,
+.plus {
+  margin-right: 5px;
+  border-radius: 40px;
+  padding: 10px 20px;
+  background-color: $bg-color;
+  color: white;
+  display: inline-block;
+  font: normal normal 26px/1 "Roboto", sans-serif;
+  text-align: center;
+}

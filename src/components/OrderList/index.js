@@ -69,6 +69,7 @@ const OrderList = (props) => {
                   <p className="beer-price">$ {beer.beerPrice}</p>
                   <div>
                     <button
+                      className="minus"
                       onClick={() =>
                         setBeersList((array) =>
                           array.map((object) =>
@@ -83,6 +84,7 @@ const OrderList = (props) => {
                     </button>
                     <input className="" value={beer.quantity} type="number" />
                     <button
+                      className="plus"
                       onClick={() =>
                         setBeersList((array) =>
                           array.map((object) =>
@@ -103,11 +105,12 @@ const OrderList = (props) => {
         })}
       </ul>
       <button
+        className="checkout"
         onClick={() =>
           history.push({ pathname: "/basket", state: { beersList } })
         }
       >
-        Checkout
+        Check Out
       </button>
     </div>
   );
