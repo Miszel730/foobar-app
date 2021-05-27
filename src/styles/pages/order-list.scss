@@ -1,4 +1,5 @@
 @import "../base/typography.scss";
+@import "../abstracts/mixins.scss";
 .beers-list {
   display: flex;
   flex-wrap: wrap;
@@ -21,9 +22,20 @@
     }
   }
 }
+.beer-box {
+  width: 90%;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+}
 .detailed-description {
+  align-self: flex-start;
   display: none;
-  max-width: 400px;
+  max-width: 700px;
+  margin-bottom: 15px;
+  font-family: $roboto;
+  letter-spacing: 0.5px;
   &--shown {
     display: block;
   }
@@ -41,41 +53,63 @@
   height: 100%;
   object-fit: cover;
 }
-
+.general-info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.title-box {
+  align-self: start;
+  width: 100%;
+  margin-bottom: 15px;
+}
+.beer-price {
+  width: 50%;
+  text-align: end;
+  line-height: 15px;
+  vertical-align: middle;
+  font-family: $text-font;
+  font-size: 20px;
+  margin-top: 20px;
+}
 .beer-name {
+  align-self: flex-start;
   font-family: $header-font;
   font-size: 25px;
 }
 .beer-details {
+  align-self: flex-start;
   font-family: $text-font;
   font-size: 12px;
 }
-
+.order-container {
+  display: flex;
+  flex-direction: column;
+}
 .checkout {
-  border-radius: 9px;
-  padding: 17px 35px;
-  background-color: $bttn-color;
-  display: inline-block;
-  font: normal normal 26px/1 "Roboto", sans-serif;
-  text-align: center;
+  @include primary-btn;
 }
-.checkout:hover {
-  border-radius: 9px;
-  padding: 17px 35px;
-  background-color: $orange-main;
-  display: inline-block;
-  font: normal normal 26px/1 "Roboto", sans-serif;
-  text-align: center;
-  cursor: pointer;
+
+.change-value-btn {
+  @include plus-minus-btn;
 }
-.minus,
-.plus {
-  margin-right: 5px;
-  border-radius: 40px;
-  padding: 10px 20px;
-  background-color: $bg-color;
-  color: white;
-  display: inline-block;
-  font: normal normal 26px/1 "Roboto", sans-serif;
+.beer-amount {
+  width: 30px;
+  height: 40px;
+  border: none;
   text-align: center;
+  font-size: 25px;
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+.add-beers-container {
+  margin-top: auto;
+}
+.on-tap-today {
+  font-family: $header-font;
+  color: $bg-color-light;
+  font-size: 40px;
 }

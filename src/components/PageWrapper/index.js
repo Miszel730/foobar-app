@@ -3,7 +3,7 @@ import React from "react";
 const PageWrapper = (props) => {
   return (
     <div className="pageWrapper">
-      <h1>Logo</h1>
+      <img className="logo" src="/img/moon-bar-logo.svg" />
       {props.children}
       <footer className="footer">
         <p>All rights reserved - FooBar Space Industry 2074</p>

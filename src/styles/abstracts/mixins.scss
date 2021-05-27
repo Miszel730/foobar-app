@@ -1,0 +1,35 @@
+@mixin primary-btn {
+  margin: 30px auto;
+  border-radius: 9px;
+  padding: 17px 35px;
+  background-color: $bttn-color;
+  display: inline-block;
+  font: normal normal 26px/1 "Roboto", sans-serif;
+  text-align: center;
+  &:hover {
+    border-radius: 9px;
+    padding: 17px 35px;
+    background-color: $orange-main;
+    display: inline-block;
+    font: normal normal 26px/1 "Roboto", sans-serif;
+    text-align: center;
+    cursor: pointer;
+  }
+}
+@mixin plus-minus-btn {
+  margin: 5px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  background-color: $bg-color;
+  color: white;
+  display: inline-block;
+  font: normal normal 26px/1 "Roboto", sans-serif;
+  text-align: center;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $orange-main;
+    color: $bg-color;
+  }
+}

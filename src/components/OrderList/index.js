@@ -35,8 +35,10 @@ const OrderList = (props) => {
   }, []);
 
   return (
-    <div>
-      <h2>Take a look at what we have on tap today! </h2>
+    <div className="order-container">
+      <h2 className="on-tap-today">
+        Take a look at what we have on tap today!{" "}
+      </h2>
       <ul className="beers-list">
         {beersList.map((beer, index) => {
           const beerName = beer.name.replaceAll(" ", "");
@@ -52,11 +54,16 @@ const OrderList = (props) => {
                 <div className="image-box">
                   <img className="images" src={`/img/${beerName}.png`} />
                 </div>
-                <div>
-                  <p className="beer-name">{beer.name}</p>
-                  <p className="beer-details">
-                    {beer.category}, {beer.alc}%
-                  </p>
+                <div className="beer-box">
+                  <div className="general-info">
+                    <div className="title-box">
+                      <p className="beer-name">{beer.name}</p>
+                      <p className="beer-details">
+                        {beer.category}, {beer.alc}%
+                      </p>
+                    </div>
+                    <p className="beer-price">$ {beer.beerPrice}</p>
+                  </div>
                   <p
                     className={`detailed-description ${
                       expanded === beer.name
@@ -66,34 +73,40 @@ const OrderList = (props) => {
                   >
                     {beer.description.overallImpression}
                   </p>
-                  <p className="beer-price">$ {beer.beerPrice}</p>
-                  <div>
+
+                  <div className="add-beers-container">
                     <button
-                      className="minus"
-                      onClick={() =>
+                      className="change-value-btn"
+                      onClick={(event) => {
+                        event.stopPropagation();
                         setBeersList((array) =>
                           array.map((object) =>
                             object.name === beer.name && object.quantity > 0
                               ? { ...object, quantity: object.quantity - 1 }
                               : object
                           )
-                        )
-                      }
+                        );
+                      }}
                     >
                       -
                     </button>
-                    <input className="" value={beer.quantity} type="number" />
+                    <input
+                      className="beer-amount"
+                      value={beer.quantity}
+                      type="number"
+                    />
                     <button
-                      className="plus"
-                      onClick={() =>
+                      className="change-value-btn"
+                      onClick={(event) => {
+                        event.stopPropagation();
                         setBeersList((array) =>
                           array.map((object) =>
                             object.name === beer.name
                               ? { ...object, quantity: object.quantity + 1 }
                               : object
                           )
-                        )
-                      }
+                        );
+                      }}
                     >
                       +
                     </button>
