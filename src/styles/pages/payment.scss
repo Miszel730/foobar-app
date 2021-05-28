@@ -1,0 +1,60 @@
+@import "../abstracts/variables.scss";
+@import "../abstracts/mixins.scss";
+@import "../base/typography.scss";
+
+.payment-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  background-color: white;
+  padding: 10px 30px;
+  border-radius: 20px;
+  max-width: 700px;
+  min-height: 300px;
+  h1 {
+    font-family: $header-font;
+    font-size: 25px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.568);
+    margin-bottom: 5px;
+  }
+}
+
+.order-check {
+  font-family: $roboto;
+  font-size: 20px;
+  h1 {
+    font-family: $header-font;
+    font-size: 25px;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.568);
+    margin-bottom: 5px;
+  }
+}
+.picture {
+  width: 50px;
+  height: 60px;
+}
+label {
+  font-family: $roboto;
+  font-size: 20px;
+}
+input {
+  margin-bottom: 12px;
+}
+.salut-box {
+  margin-top: 6px;
+  display: flex;
+}
+.cvc-field input {
+  width: 50px;
+}
+.beer-amount {
+  margin: 0 auto;
+}
+.price-box {
+  display: flex;
+  justify-content: flex-end;
+  font-family: $roboto;
+  font-size: 20px;
+  border-top: 1px solid rgba(128, 128, 128, 0.712);
+  margin-top: 5px;
+}

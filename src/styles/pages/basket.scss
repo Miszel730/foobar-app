@@ -24,7 +24,7 @@
 }
 .pic {
   height: 200px;
-  max-width: 200px;
+  width: 150px;
   border-radius: 15px;
 }
 .proceed-order {
@@ -46,4 +46,7 @@
   justify-content: flex-end;
   font-family: $roboto;
   font-size: 20px;
+}
+.beer-details {
+  margin-bottom: 5px;
 }
