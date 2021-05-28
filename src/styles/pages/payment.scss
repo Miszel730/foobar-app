@@ -31,7 +31,7 @@
 }
 .picture {
   width: 50px;
-  height: 60px;
+  height: 50px;
 }
 label {
   font-family: $roboto;
@@ -48,7 +48,8 @@ input {
   width: 50px;
 }
 .beer-amount {
-  margin: 0 auto;
+  margin-left: auto;
+  margin-top: 12px;
 }
 .price-box {
   display: flex;
@@ -57,4 +58,7 @@ input {
   font-size: 20px;
   border-top: 1px solid rgba(128, 128, 128, 0.712);
   margin-top: 5px;
+}
+.proceed-order {
+  max-width: 760px;
 }

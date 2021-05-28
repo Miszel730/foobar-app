@@ -42,7 +42,7 @@ const Payment = (props) => {
       >
         <div className="payment-container">
           <div className="form-box">
-            <h1>Payment form:</h1>
+            <h1>Payment form</h1>
             <div className="name-field">
               <label htmlFor="userName">Customer name:</label> <br />
               <input

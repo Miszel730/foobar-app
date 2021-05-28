@@ -50,7 +50,14 @@ const OrderList = (props) => {
                 key={index}
               >
                 <div className="image-box">
-                  <img className="images" src={`/img/${beerName}.png`} />
+                  <img
+                    className={`images ${
+                      beerName === "Mowintime" || beerName === "RuinedChildhood"
+                        ? "images--top-position"
+                        : ""
+                    }`}
+                    src={`/img/${beerName}.png`}
+                  />
                 </div>
                 <div className="beer-box">
                   <div className="general-info">
