@@ -94,7 +94,7 @@ const Payment = (props) => {
           >
             Back to basket
           </button>
-          <button>Launch the order</button>
+          <button className="checkout">Launch the order</button>
         </form>
       </div>
       <div>
