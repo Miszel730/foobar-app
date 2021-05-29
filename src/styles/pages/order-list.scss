@@ -124,3 +124,10 @@
   color: $bg-color-light;
   font-size: 40px;
 }
+@media (max-width: 450px) {
+  .beers-list {
+    &__item {
+      width: 80%;
+    }
+  }
+}

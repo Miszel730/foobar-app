@@ -62,3 +62,9 @@ input {
 .proceed-order {
   max-width: 760px;
 }
+@media (max-width: 450px) {
+  .payment-container {
+    flex-wrap: wrap;
+    width: 80%;
+  }
+}

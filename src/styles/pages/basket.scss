@@ -50,3 +50,19 @@
 .beer-details {
   margin-bottom: 5px;
 }
+@media (max-width: 450px) {
+  .basket-page {
+    width: 80%;
+  }
+  .basket-container {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .pic {
+    // height: 150px;
+    width: 45%;
+  }
+  .all-info {
+    width: 45%;
+  }
+} ;
