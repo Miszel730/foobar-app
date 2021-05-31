@@ -16,9 +16,9 @@
     border-radius: 10px;
     background-color: white;
     padding: 0 0 30px;
-    margin: 0 0 15px;
+    margin: 0 0 50px;
     &--expanded {
-      width: 90%;
+      width: 86.5%;
     }
   }
 }
@@ -128,6 +128,7 @@
   .beers-list {
     &__item {
       width: 80%;
+      margin: 0 0 30px;
     }
   }
 }

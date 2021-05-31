@@ -55,12 +55,12 @@ input {
   display: flex;
   justify-content: flex-end;
   font-family: $roboto;
-  font-size: 20px;
+  font-size: 25px;
   border-top: 1px solid rgba(128, 128, 128, 0.712);
   margin-top: 5px;
 }
 .proceed-order {
-  max-width: 760px;
+  max-width: 880px;
 }
 @media (max-width: 450px) {
   .payment-container {
