@@ -143,7 +143,14 @@ const Payment = (props) => {
           >
             Back to basket
           </button>
-          <button className="checkout">Launch the order</button>
+          <button 
+            className="checkout" 
+            onClick={() =>
+              history.push({ pathname: "/launch", state: { beersList } })
+            }
+          >
+            Launch the order
+          </button>
         </div>
       </form>
     </div>

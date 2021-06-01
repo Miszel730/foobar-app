@@ -6,6 +6,7 @@ import OrderList from "./components/OrderList";
 import Payment from "./components/Payment";
 import Basket from "./components/Basket";
 import "./styles/main.scss";
+import LaunchScreen from "./components/LaunchOrder";
 const App = () => {
   return (
     <div className="App">
@@ -16,6 +17,7 @@ const App = () => {
             <Route exact path="/order" component={OrderList} />
             <Route exact path="/basket" component={Basket} />
             <Route exact path="/payment" component={Payment} />
+            <Route exact path="/launch" component={LaunchScreen} />
           </Switch>
         </Router>
       </PageWrapper>
