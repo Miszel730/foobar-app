@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { fetchData } from "../../ApiService";
 import { useHistory } from "react-router";
@@ -31,6 +31,9 @@ const Payment = (props) => {
     );
     return beersArr;
   };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div>

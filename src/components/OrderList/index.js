@@ -23,6 +23,7 @@ const OrderList = (props) => {
   }, []);
 
   useEffect(async () => {
+    window.scrollTo(0, 0); //page goes to the top on render
     if (!props.location?.state?.beersList) {
       const beerTypes = await fetchData("beertypes");
       const beersWithPrice = beerTypes.map((beerObject) => ({
@@ -46,7 +47,11 @@ const OrderList = (props) => {
                 className={`beers-list__item ${
                   expanded === beer.name ? "beers-list__item--expanded" : ""
                 }`}
-                onClick={() => setExpanded(beer.name)}
+                onClick={() =>
+                  setExpanded((activeBeer) =>
+                    activeBeer === beer.name ? "" : beer.name
+                  )
+                }
                 key={index}
               >
                 <div className="image-box">
