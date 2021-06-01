@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 
 const Basket = (props) => {
@@ -9,7 +9,9 @@ const Basket = (props) => {
 
   const history = useHistory();
 
-  console.log();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
