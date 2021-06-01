@@ -1,22 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { fetchData } from "../../ApiService";
 import { useHistory } from "react-router";
 
 const Payment = (props) => {
+
   const {
     location: {
       state: { beersList },
     },
   } = props;
+
   const history = useHistory();
+  const [orderResponse,setOrderResponse] = useState();
+
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
+
   console.log(errors);
+
   const watchDate = watch("expMonth");
 
   const sendOrder = () => {
@@ -34,14 +40,11 @@ const Payment = (props) => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
+  
   return (
     <div>
       <h2 className="on-tap-today">Payment details</h2>
       <form
-        onSubmit={handleSubmit((values) =>
-          fetchData("order", "POST", sendOrder())
-        )}
       >
         <div className="payment-container">
           <div className="form-box">
@@ -159,9 +162,12 @@ const Payment = (props) => {
           </button>
           <button 
             className="checkout" 
-            onClick={() =>
-              history.push({ pathname: "/launch", state: { beersList } })
-            }
+            onClick={handleSubmit(async () => {
+              const { fetchedResponse } = await fetchData("order", "POST", sendOrder()).then((orderResponse)=>{
+                // setOrderResponse(fetchedResponse);
+                history.push({ pathname: "/launch", state: { orderResponse } });
+              });
+            })}
           >
             Launch the order
           </button>

@@ -3,16 +3,19 @@ import "../../styles/pages/launch-order.scss";
 import { useHistory } from "react-router";
 import { gsap } from "gsap";
 import { TextPlugin } from "gsap/TextPlugin";
-import OrderList from "../OrderList";
 
 gsap.registerPlugin(TextPlugin);
 
-
-const LaunchScreen = () => {
+const LaunchScreen = (props) => {
     useEffect(() => {
         startAnimation();
     },[]);
+
     const history = useHistory();
+    const [orderResponse, setOrderResponse] = useState(
+        props.location?.state?.orderResponse || []
+      );
+      console.log(orderResponse)
 
     function startAnimation() {
 
@@ -40,14 +43,17 @@ const LaunchScreen = () => {
         textTimeline.to(".number", {
             duration: 2,
             text: {
-                value: `111`,
+                value: props.location?.state?.orderResponse.status == "200"
+                    ?   props.location?.state?.orderResponse.id
+                    :   "We couldn't get your order number",
+
                 speed: 1
             },
             ease: "none",
             delay: 1
         });
 
-        setTimeout(() => {  history.push({ pathname: "/order"});}, 18000);
+        // setTimeout(() => {  history.push({ pathname: "/order"});}, 18000);
 
         // document.querySelector(".moon").classList.add("moonAnimation");
         // document.querySelector(".rocket").classList.add("rocketAnimation");
