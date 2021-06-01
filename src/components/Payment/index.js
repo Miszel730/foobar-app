@@ -46,38 +46,46 @@ const Payment = (props) => {
         <div className="payment-container">
           <div className="form-box">
             <h1>Payment form</h1>
-            <div className="name-field">
+            <div className="input-box">
               <label htmlFor="userName">Customer name:</label> <br />
               <input
-                className="userName"
+                className={`input-field ${
+                  errors.userName ? "input-field--error" : ""
+                }`}
                 type="text"
                 {...register("userName", {
                   required: "This field is required!",
                 })}
               />
               <br />
-              {errors.userName?.message}
+              <p className="error">{errors.userName?.message}</p>
             </div>
-            <div className="card-field">
+            <div className="input-box">
               <label htmlFor="cardNumber">Card number:</label>
               <br />
               <input
+                className={`input-field ${
+                  errors.cardNumber ? "input-field--error" : ""
+                }`}
                 type="text"
                 {...register("cardNumber", {
                   required: "This field is required!",
                   pattern: {
                     value: /^(?:4[0-9]{12}(?:[0-9]{3})?|[25][1-7][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$/i,
-                    message: "Not valid number / empty account",
+                    message: "Not valid number",
                   },
                 })}
               />
               <br />
-              {errors.cardNumber?.message}
+              <p className="error">{errors.cardNumber?.message}</p>
             </div>
-            <div className="exp-field">
+            <div className="input-box">
               <label htmlFor="expMonth">Expiry date:</label>
               <br />
               <input
+                className={`input-field ${
+                  errors.expMonth ? "input-field--error" : ""
+                }`}
                 type="month"
                 {...register("expMonth", {
                   required: "This field is required!",
@@ -86,23 +94,26 @@ const Payment = (props) => {
                 })}
               />
               <br />
-              {errors.expMonth?.message}
+              <p className="error">{errors.expMonth?.message}</p>
             </div>
-            <div className="cvc-field">
+            <div className="input-box">
               <label htmlFor="cvc">CVC:</label>
               <br />
               <input
+                className={`input-field ${
+                  errors.cvc ? "input-field--error" : ""
+                }`}
                 type="number"
                 {...register("cvc", {
                   required: "This field is required!",
                   pattern: {
                     value: /^[0-9]{3,4}$/,
-                    message: "This field requires only 3-4 numbers!",
+                    message: "Only 3-4 digits!",
                   },
                 })}
               />
               <br />
-              {errors.cvc?.message}
+              <p className="error">{errors.cvc?.message}</p>
             </div>
           </div>
           <div className="order-check">

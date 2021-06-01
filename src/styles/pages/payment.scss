@@ -62,9 +62,29 @@ input {
 .proceed-order {
   max-width: 880px;
 }
+.input-box {
+  position: relative;
+  margin-bottom: 10px;
+}
+.error {
+  position: absolute;
+  color: red;
+  bottom: -5px;
+  font-family: $roboto;
+}
+.input-field {
+  border-radius: 6px;
+  height: 20px;
+  &--error {
+    border: 1px solid red;
+  }
+}
 @media (max-width: 450px) {
   .payment-container {
     flex-wrap: wrap;
     width: 80%;
+  }
+  .input-field {
+    height: 35px;
   }
 }
