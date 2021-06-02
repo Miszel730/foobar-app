@@ -67,7 +67,8 @@ const Payment = (props) => {
                 className={`input-field ${
                   errors.cardNumber ? "input-field--error" : ""
                 }`}
-                type="text"
+                // maxLength="16"
+                type="number"
                 {...register("cardNumber", {
                   required: "This field is required!",
                   pattern: {
@@ -103,6 +104,7 @@ const Payment = (props) => {
                 className={`input-field ${
                   errors.cvc ? "input-field--error" : ""
                 }`}
+                maxLength="4"
                 type="number"
                 {...register("cvc", {
                   required: "This field is required!",
@@ -157,8 +159,8 @@ const Payment = (props) => {
           >
             Back to basket
           </button>
-          <button 
-            className="checkout" 
+          <button
+            className="checkout"
             onClick={() =>
               history.push({ pathname: "/launch", state: { beersList } })
             }
