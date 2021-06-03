@@ -5,9 +5,8 @@ const PageWrapper = (props) => {
     <div className="pageWrapper">
       <img className="logo" src="/img/moon-bar-logo.svg" />
       <div className="desktop-blur">
-        The App is not ready for desktop...
-        <br />
-        Adjust your screen width
+        <p>The App is not ready for desktop...</p>
+        <p>Adjust your screen width</p>
       </div>
       {props.children}
       <footer className="footer">
