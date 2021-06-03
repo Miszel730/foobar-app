@@ -64,27 +64,25 @@
   0% {
     opacity: 0;
   }
-
-  @keyframes moonMovement {
-    0% {
-      transform: translate(8px, 3px);
-    }
-
-    50% {
-      transform: translate(5px, -5px);
-    }
-
-    100% {
-      transform: translate(8px, 3px);
-    }
+}
+@keyframes moonMovement {
+  0% {
+    transform: translate(8px, 3px);
   }
 
-  .rocket {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    opacity: 0;
+  50% {
+    transform: translate(5px, -5px);
   }
+
+  100% {
+    transform: translate(8px, 3px);
+  }
+}
+.rocket {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
 }
 
 .cloud-one {
@@ -103,66 +101,64 @@
   0% {
     transform: scale(1);
   }
-
-  @keyframes rocketMovement {
-    0% {
-      opacity: 0;
-    }
-
-    25% {
-      opacity: 1;
-      transform: scale(1.1);
-    }
-
-    100% {
-      transform: translate(300px, -400px) scale(0.1);
-      opacity: 1;
-    }
+}
+@keyframes rocketMovement {
+  0% {
+    opacity: 0;
   }
 
-  .cloud-one {
-    position: absolute;
-    bottom: -20px;
-    left: -30px;
+  25% {
+    opacity: 1;
+    transform: scale(1.1);
   }
 
-  .cloudOneAnimation {
-    animation: cloudOneMovement 2s ease;
-    animation-delay: 1s;
-    animation-fill-mode: forwards;
+  100% {
+    transform: translate(300px, -400px) scale(0.1);
+    opacity: 1;
+  }
+}
+.cloud-one {
+  position: absolute;
+  bottom: -20px;
+  left: -30px;
+}
+
+.cloudOneAnimation {
+  animation: cloudOneMovement 2s ease;
+  animation-delay: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes cloudOneMovement {
+  0% {
+    transform: scale(1);
   }
 
-  @keyframes cloudOneMovement {
-    0% {
-      transform: scale(1);
-    }
+  100% {
+    opacity: 0.5;
+    transform: scale(1.4);
+  }
+}
 
-    100% {
-      opacity: 0.5;
-      transform: scale(1.4);
-    }
+.cloud-two {
+  position: absolute;
+  bottom: -20px;
+  left: -30px;
+}
+
+.cloudTwoAnimation {
+  animation: cloudTwoMovement 2s;
+  animation-delay: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes cloudTwoMovement {
+  0% {
+    transform: scale(1);
   }
 
-  .cloud-two {
-    position: absolute;
-    bottom: -20px;
-    left: -30px;
-  }
-
-  .cloudTwoAnimation {
-    animation: cloudTwoMovement 2s;
-    animation-delay: 1s;
-    animation-fill-mode: forwards;
-  }
-
-  @keyframes cloudTwoMovement {
-    0% {
-      transform: scale(1);
-    }
-
-    100% {
-      opacity: 0.5;
-      transform: scale(0.8) translate(-100px, 100px);
-    }
+  100% {
+    opacity: 0.5;
+    transform: scale(0.8) translate(-100px, 100px);
   }
 }
