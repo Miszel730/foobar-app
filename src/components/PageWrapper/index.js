@@ -7,7 +7,7 @@ const PageWrapper = (props) => {
       <div className="desktop-blur">
         <p>Not ready for desktop... Adjust your screen width</p>
       </div>
-      {props.children}
+      <div className="children-wraper">{props.children}</div>
       <footer className="footer">
         <p>All rights reserved - FooBar Space Industry 2074</p>
       </footer>

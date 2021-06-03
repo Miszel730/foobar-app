@@ -44,4 +44,8 @@
   line-height: 100vh;
   font-family: $header-font;
   font-size: 35px;
+  z-index: 10;
+}
+.children-wraper {
+  z-index: 1;
 }
