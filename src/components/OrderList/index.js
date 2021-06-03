@@ -12,7 +12,6 @@ const OrderList = (props) => {
 
   useEffect(async () => {
     const { taps } = await fetchData();
-    console.log(taps);
     const newList = [];
     taps.map(
       (object) =>
