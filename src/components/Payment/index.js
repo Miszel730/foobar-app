@@ -88,7 +88,7 @@ const Payment = (props) => {
                 className={`input-field ${
                   errors.expMonth ? "input-field--error" : ""
                 }`}
-                type="month"
+                type="date"
                 {...register("expMonth", {
                   required: "This field is required!",
                   validate: () =>
