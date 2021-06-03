@@ -132,7 +132,7 @@ const OrderList = (props) => {
           history.push({ pathname: "/basket", state: { beersList } })
         }
       >
-        Check Out
+        Proceed
       </button>
     </div>
   );

@@ -92,7 +92,7 @@ const Basket = (props) => {
             history.push({ pathname: "/order", state: { beersList } })
           }
         >
-          ←Continue shopping
+          ← Continue shopping
         </button>
         <button
           className="checkout"
@@ -100,7 +100,7 @@ const Basket = (props) => {
             history.push({ pathname: "/payment", state: { beersList } })
           }
         >
-          Launch order! →
+          Checkout →
         </button>
       </div>
     </>

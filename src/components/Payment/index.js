@@ -173,7 +173,7 @@ const Payment = (props) => {
               });
             })}
           >
-            Launch the order
+            Launch the order!
           </button>
         </div>
       </form>
