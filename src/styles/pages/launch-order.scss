@@ -12,14 +12,26 @@
   border: 2px solid white;
   overflow: hidden;
 
-  h1,
-  p {
-    color: $bg-color-light;
+  h1 {
+    color: white;
     font-family: $text-font;
     font-size: 1.2rem;
     text-align: center;
     margin: 0.5rem 50px;
     line-height: 35px;
+    position: absolute;
+  }
+
+  p {
+    top: 30vw;
+    width: 80%;
+    color: white;
+    font-family: $text-font;
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 0.5rem 50px;
+    line-height: 35px;
+    position: absolute;
   }
 
   .number {
@@ -35,18 +47,33 @@
     top: 80px;
     right: 30px;
   }
+}
 
-  .moonAnimation {
-    animation: moonMovement 5s ease infinite;
+.rocket {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.rocketAnimation {
+  animation: rocketMovement 4s ease;
+}
+
+@keyframes rocketMovement {
+  0% {
+    opacity: 0;
   }
 
   @keyframes moonMovement {
     0% {
       transform: translate(8px, 3px);
     }
+
     50% {
       transform: translate(5px, -5px);
     }
+
     100% {
       transform: translate(8px, 3px);
     }
@@ -58,19 +85,35 @@
     left: 0;
     opacity: 0;
   }
+}
 
-  .rocketAnimation {
-    animation: rocketMovement 4s ease;
+.cloud-one {
+  position: absolute;
+  bottom: -20px;
+  left: -30px;
+}
+
+.cloudOneAnimation {
+  animation: cloudOneMovement 2s ease;
+  animation-delay: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes cloudOneMovement {
+  0% {
+    transform: scale(1);
   }
 
   @keyframes rocketMovement {
     0% {
       opacity: 0;
     }
+
     25% {
       opacity: 1;
       transform: scale(1.1);
     }
+
     100% {
       transform: translate(300px, -400px) scale(0.1);
       opacity: 1;
@@ -93,6 +136,7 @@
     0% {
       transform: scale(1);
     }
+
     100% {
       opacity: 0.5;
       transform: scale(1.4);
@@ -115,6 +159,7 @@
     0% {
       transform: scale(1);
     }
+
     100% {
       opacity: 0.5;
       transform: scale(0.8) translate(-100px, 100px);
